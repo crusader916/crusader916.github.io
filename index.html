@@ -1,321 +1,329 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
+<html lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium BIO Creator</title>
-    <!-- Подключаем красивые шрифты -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Подключаем библиотеку для анимаций -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <!-- Подключаем библиотеку для частиц -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <title>BIO Sites Creator</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        :root {
-            --primary: #00ff88;
-            --secondary: #00a3ff;
-            --dark: #0f0f0f;
-            --light: #ffffff;
+            font-family: 'Montserrat', sans-serif;
         }
 
         body {
-            background: var(--dark);
-            color: var(--light);
+            background: #0f0f0f;
+            color: #ffffff;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Улучшенная навигация */
+        /* Навигация */
         nav {
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 15px 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff88, #00a3ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
 
         .nav-links a {
-            position: relative;
-            padding: 8px 20px;
-            margin: 0 5px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            background: rgba(0, 255, 136, 0.1);
-            color: var(--primary);
+            color: #00ff88;
         }
 
-        /* Улучшенный герой-секция */
+        /* Главный экран */
         .hero {
-            min-height: 100vh;
-            background: radial-gradient(circle at center, rgba(0,0,0,0.4), rgba(0,0,0,0.8)),
-                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-attachment: fixed;
+            height: 100vh;
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(0,255,136,0.1), rgba(0,163,255,0.1));
-            animation: gradientMove 15s ease infinite;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
         .hero h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            text-shadow: 0 0 30px rgba(0,255,136,0.3);
-            margin-bottom: 30px;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
         }
 
-        /* Улучшенные карточки портфолио */
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        /* Примеры работ */
+        .portfolio {
+            padding: 100px 0;
+        }
+
+        .portfolio h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
         .portfolio-item {
             position: relative;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.2);
-            transform-style: preserve-3d;
-            perspective: 1000px;
+            transition: transform 0.3s;
         }
 
-        .portfolio-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .portfolio-item img {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(0,255,136,0.2), rgba(0,163,255,0.2));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            height: 400px;
+            object-fit: cover;
         }
 
-        .portfolio-item:hover::before {
-            opacity: 1;
+        .portfolio-item:hover {
+            transform: translateY(-10px);
         }
 
         .portfolio-overlay {
-            transform: translateY(100%);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(15,15,15,0.95);
-            backdrop-filter: blur(10px);
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            transform: translateY(0);
-        }
-
-        /* Улучшенные карточки цен */
-        .price-card {
-            background: rgba(26,26,26,0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 15px 45px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .price-card::before {
-            content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
-            transform: rotate(45deg);
-            transition: transform 0.6s ease;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px;
         }
 
-        .price-card:hover::before {
-            transform: rotate(45deg) translate(50%, 50%);
+        /* Форма заказа */
+        .order-form {
+            padding: 100px 0;
+            background: #1a1a1a;
         }
 
-        /* Улучшенная форма */
         .form-container {
-            background: rgba(26,26,26,0.95);
-            backdrop-filter: blur(20px);
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
         }
 
         input, textarea, select {
-            background: rgba(42,42,42,0.95);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(0,255,136,0.2);
+            width: 100%;
+            padding: 15px;
+            background: #2a2a2a;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            margin-top: 5px;
         }
 
         .submit-btn {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            font-weight: 600;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(45deg, #00ff88, #00a3ff);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
 
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s ease;
+        .submit-btn:hover {
+            transform: scale(1.05);
         }
 
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-
-        /* Дополнительные анимации */
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Медиа-запросы для адаптивности */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            
-            .nav-links {
-                display: none;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
+        }
+
+        /* Цены */
+        .pricing {
+            padding: 100px 0;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .price-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            background: #2a2a2a;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            color: #00ff88;
         }
     </style>
 </head>
 <body>
-    <!-- Добавляем контейнер для частиц -->
-    <div id="particles-js"></div>
-    
-    <!-- Оборачиваем весь контент -->
-    <div class="content-wrapper">
-        <!-- Остальной HTML код остается тем же -->
-    </div>
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">Pixel Studio</div>
+            <div class="nav-links">
+                <a href="#portfolio">Примеры</a>
+                <a href="#pricing">Цены</a>
+                <a href="#order">Заказать</a>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Скрипты -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        // Инициализация AOS
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+    <section class="hero">
+        <div class="container">
+            <h1>BIO Твоей мечты!</h1>
+            <p>Ваш уникальный стиль в каждом пикселе!</p>
+        </div>
+    </section>
 
-        // Конфигурация частиц
-        particlesJS('particles-js',
-            {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#00ff88"
-                    },
-                    "shape": {
-                        "type": "circle"
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": false
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#00a3ff",
-                        "opacity": 0.4,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": false,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "repulse"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    }
-                },
-                "retina_detect": true
-            }
-        );
-    </script>
-</body>
-</html>
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2>Наши работы</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="BIO%20Sites%20Creator_files/400x600.png" alt="Portfolio 1">
+                    <div class="portfolio-overlay">
+                        <h3>💸Work💸 BIO</h3>
+                        <p>Современный дизайн для ********</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="BIO%20Sites%20Creator_files/400x600.png" alt="Portfolio 2">
+                    <div class="portfolio-overlay">
+                        <h3>Креативное BIO</h3>
+                        <p>Яркий дизайн для творческих личностей</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="BIO%20Sites%20Creator_files/400x600.png" alt="Portfolio 3">
+                    <div class="portfolio-overlay">
+                        <h3>Минималистичное BIO</h3>
+                        <p>Чистый и лаконичный дизайн</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Тарифы</h2>
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <h3>Базовый</h3>
+                    <div class="price">$2</div>
+                    <ul>
+                        <li>Простой дизайн</li>
+                        <li>До 2 ссылок</li>
+                        <li>Базовая анимация</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Продвинутый</h3>
+                    <div class="price">$5</div>
+                    <ul>
+                        <li>Уникальный дизайн</li>
+                        <li>До 10 ссылок</li>
+                        <li>Продвинутая анимация</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Премиум</h3>
+                    <div class="price">$10</div>
+                    <ul>
+                        <li>Эксклюзивный дизайн</li>
+                        <li>Неограниченное количество ссылок</li>
+                        <li>Премиум анимации</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="order-form" id="order">
+        <div class="container">
+            <div class="form-container">
+                <h2>Заказать BIO сайт</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Выберите пакет</label>
+                        <select id="package">
+                            <option value="basic" selected="selected">Базовый</option>
+                            <option value="advanced">Продвинутый</option>
+                            <option value="premium">Премиум</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Описание проекта</label>
+                        <textarea id="message" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+</body></html>
