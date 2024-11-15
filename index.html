@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html lang="ru">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BIO Sites Creator</title>
@@ -11,20 +11,16 @@
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
         }
-
         body {
             background: #0f0f0f;
             color: #ffffff;
             line-height: 1.6;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* Навигация */
         nav {
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
@@ -34,13 +30,11 @@
             top: 0;
             z-index: 1000;
         }
-
         .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .logo {
             font-size: 24px;
             font-weight: bold;
@@ -48,19 +42,15 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         .nav-links a {
             color: white;
             text-decoration: none;
             margin-left: 30px;
             transition: color 0.3s;
         }
-
         .nav-links a:hover {
             color: #00ff88;
         }
-
-        /* Главный экран */
         .hero {
             height: 100vh;
             display: flex;
@@ -72,53 +62,43 @@
             background-size: cover;
             background-position: center;
         }
-
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             animation: fadeIn 1s ease-out;
         }
-
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 30px;
             color: #cccccc;
         }
-
-        /* Примеры работ */
         .portfolio {
             padding: 100px 0;
         }
-
         .portfolio h2 {
             text-align: center;
             margin-bottom: 50px;
             font-size: 2.5rem;
         }
-
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
-
         .portfolio-item {
             position: relative;
             border-radius: 15px;
             overflow: hidden;
             transition: transform 0.3s;
         }
-
         .portfolio-item img {
             width: 100%;
             height: 400px;
             object-fit: cover;
         }
-
         .portfolio-item:hover {
             transform: translateY(-10px);
         }
-
         .portfolio-overlay {
             position: absolute;
             bottom: 0;
@@ -127,22 +107,17 @@
             background: linear-gradient(transparent, rgba(0,0,0,0.9));
             padding: 20px;
         }
-
-        /* Форма заказа */
         .order-form {
             padding: 100px 0;
             background: #1a1a1a;
         }
-
         .form-container {
             max-width: 600px;
             margin: 0 auto;
         }
-
         .form-group {
             margin-bottom: 20px;
         }
-
         input, textarea, select {
             width: 100%;
             padding: 15px;
@@ -152,7 +127,6 @@
             color: white;
             margin-top: 5px;
         }
-
         .submit-btn {
             background: linear-gradient(45deg, #00ff88, #00a3ff);
             color: white;
@@ -162,12 +136,9 @@
             cursor: pointer;
             transition: transform 0.3s;
         }
-
         .submit-btn:hover {
             transform: scale(1.05);
         }
-
-        /* Анимации */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -178,19 +149,15 @@
                 transform: translateY(0);
             }
         }
-
-        /* Цены */
         .pricing {
             padding: 100px 0;
         }
-
         .pricing-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
-
         .price-card {
             background: #1a1a1a;
             padding: 30px;
@@ -198,12 +165,10 @@
             text-align: center;
             transition: transform 0.3s;
         }
-
         .price-card:hover {
             transform: translateY(-10px);
             background: #2a2a2a;
         }
-
         .price {
             font-size: 2.5rem;
             margin: 20px 0;
@@ -235,21 +200,21 @@
             <h2>Наши работы</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
-                    <img src="BIO%20Sites%20Creator_files/400x600.png" alt="Portfolio 1">
+                    <img src="portfolio/bio-work-example.png" alt="Work BIO Example">
                     <div class="portfolio-overlay">
                         <h3>💸Work💸 BIO</h3>
                         <p>Современный дизайн для ********</p>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="BIO%20Sites%20Creator_files/400x600.png" alt="Portfolio 2">
+                    <img src="portfolio/bio-creative-example.png" alt="Creative BIO Example">
                     <div class="portfolio-overlay">
                         <h3>Креативное BIO</h3>
                         <p>Яркий дизайн для творческих личностей</p>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="BIO%20Sites%20Creator_files/400x600.png" alt="Portfolio 3">
+                    <img src="portfolio/bio-minimal-example.png" alt="Minimal BIO Example">
                     <div class="portfolio-overlay">
                         <h3>Минималистичное BIO</h3>
                         <p>Чистый и лаконичный дизайн</p>
@@ -301,16 +266,16 @@
                 <form>
                     <div class="form-group">
                         <label for="name">Ваше имя</label>
-                        <input type="text" id="name" required="">
+                        <input type="text" id="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" required="">
+                        <input type="email" id="email" required>
                     </div>
                     <div class="form-group">
                         <label for="package">Выберите пакет</label>
                         <select id="package">
-                            <option value="basic" selected="selected">Базовый</option>
+                            <option value="basic">Базовый</option>
                             <option value="advanced">Продвинутый</option>
                             <option value="premium">Премиум</option>
                         </select>
@@ -324,6 +289,5 @@
             </div>
         </div>
     </section>
-
-
-</body></html>
+</body>
+</html>
