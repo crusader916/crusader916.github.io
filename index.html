@@ -1,293 +1,686 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIO Sites Creator</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-        body {
-            background: #0f0f0f;
-            color: #ffffff;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        nav {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            background: linear-gradient(45deg, #00ff88, #00a3ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: #00ff88;
-        }
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: fadeIn 1s ease-out;
-        }
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #cccccc;
-        }
-        .portfolio {
-            padding: 100px 0;
-        }
-        .portfolio h2 {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 2.5rem;
-        }
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .portfolio-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-        .portfolio-item img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-        }
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            padding: 20px;
-        }
-        .order-form {
-            padding: 100px 0;
-            background: #1a1a1a;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        input, textarea, select {
-            width: 100%;
-            padding: 15px;
-            background: #2a2a2a;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            margin-top: 5px;
-        }
-        .submit-btn {
-            background: linear-gradient(45deg, #00ff88, #00a3ff);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .submit-btn:hover {
-            transform: scale(1.05);
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BIO Sites Creator</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            body {
+                background: #121212;
+                color: #ffffff;
+                line-height: 1.6;
             }
-        }
-        .pricing {
-            padding: 100px 0;
-        }
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        .price-card {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .price-card:hover {
-            transform: translateY(-10px);
-            background: #2a2a2a;
-        }
-        .price {
-            font-size: 2.5rem;
-            margin: 20px 0;
-            color: #00ff88;
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="container nav-content">
-            <div class="logo">Pixel Studio</div>
-            <div class="nav-links">
-                <a href="#portfolio">Примеры</a>
-                <a href="#pricing">Цены</a>
-                <a href="#order">Заказать</a>
-            </div>
-        </div>
-    </nav>
 
-    <section class="hero">
-        <div class="container">
-            <h1>BIO Твоей мечты!</h1>
-            <p>Ваш уникальный стиль в каждом пикселе!</p>
-        </div>
-    </section>
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 30px;
+            }
 
-    <section class="portfolio" id="portfolio">
-        <div class="container">
-            <h2>Наши работы</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="portfolio/1.png" alt="Work BIO Example">
-                    <div class="portfolio-overlay">
-                        <h3>💸Work💸 BIO</h3>
-                        <p>Современный дизайн для ********</p>
-                    </div>
+            nav {
+                background: rgba(18, 18, 18, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 25px 0;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-size: 28px;
+                font-weight: 700;
+                background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                margin-left: 40px;
+                font-weight: 500;
+                transition: all 0.4s ease;
+                position: relative;
+            }
+
+            .nav-links a::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: #FF6B6B;
+                transition: width 0.3s ease;
+            }
+
+            .nav-links a:hover::after {
+                width: 100%;
+            }
+
+            .hero {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                            url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1');
+                background-size: cover;
+                background-position: center;
+                position: relative;
+            }
+
+            .hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(circle at center, transparent 0%, #121212 100%);
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 2;
+            }
+
+            .hero h1 {
+                font-size: 5rem;
+                margin-bottom: 30px;
+                animation: slideUp 1s ease-out;
+                background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .hero p {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+                color: #f0f0f0;
+                animation: fadeIn 1.5s ease-out;
+            }
+
+            .portfolio {
+                padding: 120px 0;
+                background: #1a1a1a;
+            }
+
+            .portfolio-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 40px;
+                margin-top: 60px;
+            }
+
+            .portfolio-item {
+                position: relative;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+                transition: all 0.5s ease;
+            }
+
+            .portfolio-item img {
+                width: 100%;
+                height: 450px;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .portfolio-item:hover img {
+                transform: scale(1.1);
+            }
+
+            .portfolio-overlay {
+                position: absolute;
+                bottom: -100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(transparent, rgba(0,0,0,0.95));
+                padding: 30px;
+                transition: bottom 0.5s ease;
+            }
+
+            .glitch-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 450px;
+        background: #1a1a1a;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        text-transform: uppercase;
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    .order-cta {
+        text-align: center;
+        padding: 60px 0;
+    }
+
+    .order-cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .order-cta p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #f0f0f0;
+    }
+
+    .order-button {
+        background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+        color: white;
+        padding: 20px 50px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .order-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+    }
+
+
+
+    .glitch-text {
+        position: relative;
+        color: #fff;
+        animation: glitch-effect 2s infinite;
+    }
+
+    .glitch-text::before,
+    .glitch-text::after {
+        content: 'Unknown';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        overflow: hidden;
+        clip-path: inset(0 0 0 0);
+        animation: glitch-clip 2s infinite;
+    }
+
+    .glitch-text::before {
+        left: 2px;
+        text-shadow: -2px 0 #ff6b6b;
+        animation-delay: 0.2s;
+    }
+
+    .glitch-text::after {
+        left: -2px;
+        text-shadow: 2px 0 #00ffc6;
+        animation-delay: 0.4s;
+    }
+
+    @keyframes glitch-effect {
+        0% {
+            transform: translate(0, 0);
+        }
+        20% {
+            transform: translate(-2px, 2px);
+        }
+        40% {
+            transform: translate(2px, -2px);
+        }
+        60% {
+            transform: translate(-1px, 1px);
+        }
+        80% {
+            transform: translate(1px, -1px);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+
+    @keyframes glitch-clip {
+        0% {
+            clip-path: inset(10% 0 90% 0);
+        }
+        20% {
+            clip-path: inset(30% 0 60% 0);
+        }
+        40% {
+            clip-path: inset(50% 0 40% 0);
+        }
+        60% {
+            clip-path: inset(70% 0 20% 0);
+        }
+        80% {
+            clip-path: inset(90% 0 10% 0);
+        }
+        100% {
+            clip-path: inset(10% 0 90% 0);
+        }
+    }
+
+
+            .portfolio-item:hover .portfolio-overlay {
+                bottom: 0;
+            }
+
+            .pricing {
+                padding: 120px 0;
+                background: #121212;
+            }
+
+            .pricing-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 40px;
+                margin-top: 60px;
+            }
+
+            .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.modal {
+    background: #222;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    color: #fff;
+}
+
+.modal {
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #000;
+    background: none;
+    border: none;
+}
+
+.close-btn:hover {
+    color: #ff0000;
+}
+
+
+.modal h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.modal label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.modal input, .modal select, .modal textarea {
+    width: 100%;
+    padding: 15px;
+    background: #2a2a2a;
+    border: 2px solid #333;
+    border-radius: 12px;
+    color: white;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+}
+
+.modal input:focus, .modal select:focus, .modal textarea:focus {
+    border-color: #FF6B6B;
+    outline: none;
+}
+
+.modal button {
+    background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.modal button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+
+            .price-card {
+                background: #1a1a1a;
+                padding: 40px;
+                border-radius: 20px;
+                text-align: center;
+                transition: all 0.4s ease;
+                border: 1px solid #333;
+            }
+
+            .price-card:hover {
+                transform: translateY(-15px);
+                background: #222;
+                border-color: #FF6B6B;
+            }
+
+            .price {
+                font-size: 3rem;
+                margin: 25px 0;
+                color: #4ECDC4;
+            }
+
+            .order-form {
+                padding: 120px 0;
+                background: #1a1a1a;
+            }
+
+            .form-container {
+                max-width: 700px;
+                margin: 0 auto;
+                background: #222;
+                padding: 50px;
+                border-radius: 20px;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            }
+
+            input, textarea, select {
+                width: 100%;
+                padding: 15px;
+                background: #2a2a2a;
+                border: 2px solid #333;
+                border-radius: 12px;
+                color: white;
+                margin-top: 8px;
+                transition: all 0.3s ease;
+            }
+
+            input:focus, textarea:focus, select:focus {
+                border-color: #FF6B6B;
+                outline: none;
+            }
+
+            .submit-btn {
+                background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+                color: white;
+                padding: 15px 40px;
+                border: none;
+                border-radius: 12px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: 600;
+                font-size: 1.1rem;
+            }
+
+            .submit-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            }
+
+            @keyframes slideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="container nav-content">
+                <div class="logo">Digital BIO</div>
+                <div class="nav-links">
+                    <a href="#portfolio">Галерея</a>
+                    <a href="#pricing">Тарифы</a>
+                    <a href="#order">Заказать</a>
                 </div>
-                <div class="portfolio-item">
-                    <img src="portfolio/bio-creative-example.png" alt="Creative BIO Example">
-                    <div class="portfolio-overlay">
-                        <h3>Креативное BIO</h3>
-                        <p>Яркий дизайн для творческих личностей</p>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-content container">
+                <h1>BIO Твоей мечты!</h1>
+                <p>Ваш уникальный стиль в каждом пикселе!</p>
+            </div>
+        </section>
+        <section class="portfolio" id="portfolio">
+            <div class="container">
+                <h2>Наши работы</h2>
+                <div class="portfolio-grid">
+                    <!-- Первый проект -->
+                    <div class="portfolio-item">
+                        <div class="glitch-box">
+                            <span class="glitch-text">Unknown</span>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Бизнес BIO</h3>
+                            <p>Профессиональный дизайн для вашего бренда</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="portfolio/bio-minimal-example.png" alt="Minimal BIO Example">
-                    <div class="portfolio-overlay">
-                        <h3>Минималистичное BIO</h3>
-                        <p>Чистый и лаконичный дизайн</p>
+                    <!-- Второй проект -->
+                    <div class="portfolio-item">
+                        <div class="glitch-box">
+                            <span class="glitch-text">Unknown</span>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Креативное BIO</h3>
+                            <p>Уникальные решения для творческих личностей</p>
+                        </div>
+                    </div>
+                    <!-- Третий проект -->
+                    <div class="portfolio-item">
+                        <div class="glitch-box">
+                            <span class="glitch-text">Unknown</span>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Минималистичное BIO</h3>
+                            <p>Элегантная простота в каждой детали</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
 
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2>Тарифы</h2>
-            <div class="pricing-cards">
-                <div class="price-card">
-                    <h3>Базовый</h3>
-                    <div class="price">$2</div>
-                    <ul>
-                        <li>Простой дизайн</li>
-                        <li>До 2 ссылок</li>
-                        <li>Базовая анимация</li>
-                    </ul>
-                </div>
-                <div class="price-card">
-                    <h3>Продвинутый</h3>
-                    <div class="price">$5</div>
-                    <ul>
-                        <li>Уникальный дизайн</li>
-                        <li>До 10 ссылок</li>
-                        <li>Продвинутая анимация</li>
-                    </ul>
-                </div>
-                <div class="price-card">
-                    <h3>Премиум</h3>
-                    <div class="price">$10</div>
-                    <ul>
-                        <li>Эксклюзивный дизайн</li>
-                        <li>Неограниченное количество ссылок</li>
-                        <li>Премиум анимации</li>
-                    </ul>
+
+        <section class="pricing" id="pricing">
+            <div class="container">
+                <h2>Тарифы</h2>
+                <div class="pricing-cards">
+                    <div class="price-card">
+                        <h3>Crystal</h3>
+                        <div class="price">$2</div>
+                        <ul>
+                            <li>Базовый дизайн</li>
+                            <li>2 ссылки</li>
+                            <li>Простая анимация</li>
+                        </ul>
+                    </div>
+                    <div class="price-card">
+                        <h3>Platinum</h3>
+                        <div class="price">$5</div>
+                        <ul>
+                            <li>Продвинутый дизайн</li>
+                            <li>10 ссылок</li>
+                            <li>Сложная анимация</li>
+                        </ul>
+                    </div>
+                    <div class="price-card">
+                        <h3>Diamond</h3>
+                        <div class="price">$10</div>
+                        <ul>
+                            <li>Премиум дизайн</li>
+                            <li>Безлимитные ссылки</li>
+                            <li>Особые эффекты</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="order-form" id="order">
-        <div class="container">
-            <div class="form-container">
-                <h2>Заказать BIO сайт</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="package">Выберите пакет</label>
-                        <select id="package">
-                            <option value="basic">Базовый</option>
-                            <option value="advanced">Продвинутый</option>
-                            <option value="premium">Премиум</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Описание проекта</label>
-                        <textarea id="message" rows="5"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Отправить заявку</button>
-                </form>
+        <section class="order-form" id="order">
+            <div class="container">
+                <div class="order-cta">
+                    <h2>Готовы заказать свое уникальное BIO?</h2>
+                    <p>Нажмите кнопку ниже, чтобы начать</p>
+                    <button id="orderBtn" class="order-button">Заказать сейчас!</button>
+                </div>
             </div>
-        </div>
-    </section>
-</body>
-</html>
+            
+<!-- Модальное окно -->
+<div id="modalOverlay" class="modal-overlay">
+    <div class="modal">
+        <span id="closeModal" class="close-btn">&times;</span>
+        <h2>Заказать BIO</h2>
+        <p>Оплата возможна только криптовалютой!</p>
+        <p>ㅤ</p>
+        <form id="orderForm">
+            <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+
+            <input type="text" id="email" name="email" placeholder="Email / Telegram / Discord" required>
+
+            <select id="bioType" name="bioType" required>
+                <option value="Crystal">Crystal</option>
+                <option value="Platinum">Platinum</option>
+                <option value="Diamond">Diamond</option>
+            </select>
+
+            <textarea id="additionalRequests" name="additionalRequests" rows="4" placeholder="Дополнительные пожелания"></textarea>
+            <p>ㅤ</p>
+            <button type="submit" class="submit-btn">Подвертеть заказ</button>
+        </form>
+    </div>
+</div>
+</div>
+
+
+<script>
+    // Получаем элементы
+    const orderBtn = document.getElementById('orderBtn');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const closeModalBtn = document.getElementById('closeModal');
+    
+    // Открыть модальное окно
+    orderBtn.addEventListener('click', function() {
+        modalOverlay.style.display = 'flex';
+    });
+
+    // Закрыть модальное окно
+    closeModalBtn.addEventListener('click', function() {
+        modalOverlay.style.display = 'none';
+    });
+
+    // Обработчик отправки формы
+    const orderForm = document.getElementById('orderForm');
+    orderForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Здесь можно добавить код для отправки формы, например через AJAX
+        alert('Ваш заказ отправлен!');
+        modalOverlay.style.display = 'none';
+    });
+</script>
+
+<script>
+    document.getElementById('orderForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Предотвратить стандартную отправку формы
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const bioType = document.getElementById('bioType').value;
+        const additionalRequests = document.getElementById('additionalRequests').value;
+        
+        const payload = {
+            content: `Новый заказ: \n
+                Имя: ${name} \n
+                Email / Telegram / Discord: ${email} \n
+                Тип BIO: ${bioType} \n
+                Дополнительные пожелания: ${additionalRequests}`
+        };
+
+        // Отправляем данные на Discord Webhook
+        fetch('https://discord.com/api/webhooks/1307099752134873098/M2KVgBaYtQw9gvg1ZQ6KeK7kwd9DyTVCc1BdlO-cM02wpzm0HXw0Lr0A-zlCRosAbA6P', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Успешно отправлено:', data);
+            alert('Ваш заказ отправлен!');
+        })
+        .catch(error => {
+            console.error('Ошибка при отправке:', error);
+            alert('Произошла ошибка при отправке данных.');
+        });
+    });
+</script>
+
+
+            </div>
+        </section>
+    </body>
+    </html>
