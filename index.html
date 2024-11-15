@@ -641,25 +641,51 @@
         modalOverlay.style.display = 'none';
     });
 </script>
-
 <script>
     document.getElementById('orderForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Предотвратить стандартную отправку формы
+        event.preventDefault(); // Предотвращаем стандартную отправку формы
         
+        // Сбор данных из формы
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const bioType = document.getElementById('bioType').value;
         const additionalRequests = document.getElementById('additionalRequests').value;
-        
+
+        // Формирование красиво оформленного сообщения для Discord
         const payload = {
-            content: `Новый заказ: \n
-                Имя: ${name} \n
-                Email / Telegram / Discord: ${email} \n
-                Тип BIO: ${bioType} \n
-                Дополнительные пожелания: ${additionalRequests}`
+            embeds: [{
+                title: "🎉 Новый заказ BIO получен!",
+                color: 0x00ff00, // Зеленый цвет
+                fields: [
+                    {
+                        name: "👤 Имя клиента",
+                        value: name,
+                        inline: true
+                    },
+                    {
+                        name: "📧 Контакт",
+                        value: email,
+                        inline: true
+                    },
+                    {
+                        name: "💎 Тип BIO",
+                        value: bioType,
+                        inline: true
+                    },
+                    {
+                        name: "📝 Дополнительные пожелания",
+                        value: additionalRequests || "Без дополнительных пожеланий",
+                        inline: false
+                    }
+                ],
+                timestamp: new Date().toISOString(),
+                footer: {
+                    text: "Система заказов BIO"
+                }
+            }]
         };
 
-        // Отправляем данные на Discord Webhook
+        // Отправка данных на Webhook Discord
         fetch('https://discord.com/api/webhooks/1307099752134873098/M2KVgBaYtQw9gvg1ZQ6KeK7kwd9DyTVCc1BdlO-cM02wpzm0HXw0Lr0A-zlCRosAbA6P', {
             method: 'POST',
             headers: {
@@ -667,17 +693,38 @@
             },
             body: JSON.stringify(payload)
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Успешно отправлено:', data);
-            alert('Ваш заказ отправлен!');
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка сети');
+            }
+
+            // Успешная отправка - показываем уведомление
+            Swal.fire({
+                title: 'Успех!',
+                text: 'Ваш заказ BIO был успешно отправлен!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+
+            // Сброс формы после отправки
+            document.getElementById('orderForm').reset();
+
+            // Закрытие модала
+            document.getElementById('modalOverlay').style.display = 'none';
         })
         .catch(error => {
-            console.error('Ошибка при отправке:', error);
-            alert('Произошла ошибка при отправке данных.');
+            console.error('Ошибка:', error);
+            // Ошибка отправки - показываем уведомление
+            Swal.fire({
+                title: 'Ошибка!',
+                text: 'Произошла ошибка при отправке вашего заказа. Попробуйте снова.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         });
     });
 </script>
+
 
 
             </div>
