@@ -1,43 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Awesome Landing Page</title>
+    <title>BIO Sites Creator</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            color: white;
-            min-height: 100vh;
+            background: #0f0f0f;
+            color: #ffffff;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
+        /* Навигация */
         nav {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 24px;
             font-weight: bold;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #00ff88, #00a3ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
         }
 
         .nav-links a {
@@ -48,125 +57,272 @@
         }
 
         .nav-links a:hover {
-            color: #4ecdc4;
+            color: #00ff88;
         }
 
+        /* Главный экран */
         .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 100px 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
-            animation: slideDown 1s ease;
+            animation: fadeIn 1s ease-out;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
             color: #cccccc;
-            margin-bottom: 40px;
-            animation: slideUp 1s ease;
         }
 
-        .cta-button {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
+        /* Примеры работ */
+        .portfolio {
+            padding: 100px 0;
+        }
+
+        .portfolio h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
             transition: transform 0.3s;
-            display: inline-block;
         }
 
-        .cta-button:hover {
+        .portfolio-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px;
+        }
+
+        /* Форма заказа */
+        .order-form {
+            padding: 100px 0;
+            background: #1a1a1a;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 15px;
+            background: #2a2a2a;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #00ff88, #00a3ff);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
             transform: scale(1.05);
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            padding: 50px 0;
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .feature-card {
-            background: rgba(255, 255, 255, 0.1);
+        /* Цены */
+        .pricing {
+            padding: 100px 0;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .price-card {
+            background: #1a1a1a;
             padding: 30px;
             border-radius: 15px;
             text-align: center;
             transition: transform 0.3s;
         }
 
-        .feature-card:hover {
+        .price-card:hover {
             transform: translateY(-10px);
+            background: #2a2a2a;
         }
 
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
-            }
-            to {
-                text-shadow: 0 0 20px rgba(78, 205, 196, 0.8);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .price {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            color: #00ff88;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <div class="logo">Awesome Site</div>
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">BIO Creator</div>
             <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#features">Features</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
-
-        <div class="hero">
-            <h1>Welcome to the Future</h1>
-            <p>Experience the most amazing digital solutions for your business</p>
-            <a href="#" class="cta-button">Get Started</a>
-        </div>
-
-        <div class="features">
-            <div class="feature-card">
-                <h3>Innovation</h3>
-                <p>Cutting-edge solutions for modern problems</p>
-            </div>
-            <div class="feature-card">
-                <h3>Design</h3>
-                <p>Beautiful and intuitive user experiences</p>
-            </div>
-            <div class="feature-card">
-                <h3>Performance</h3>
-                <p>Lightning-fast and reliable solutions</p>
+                <a href="#portfolio">Примеры</a>
+                <a href="#pricing">Цены</a>
+                <a href="#order">Заказать</a>
             </div>
         </div>
-    </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Создаем крутые BIO сайты</h1>
+            <p>Уникальный дизайн • Быстрая разработка • Лучшие цены</p>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2>Наши работы</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/400x600" alt="Portfolio 1">
+                    <div class="portfolio-overlay">
+                        <h3>Бизнес BIO</h3>
+                        <p>Современный дизайн для бизнеса</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/400x600" alt="Portfolio 2">
+                    <div class="portfolio-overlay">
+                        <h3>Креативное BIO</h3>
+                        <p>Яркий дизайн для творческих личностей</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/400x600" alt="Portfolio 3">
+                    <div class="portfolio-overlay">
+                        <h3>Минималистичное BIO</h3>
+                        <p>Чистый и лаконичный дизайн</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Тарифы</h2>
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <h3>Базовый</h3>
+                    <div class="price">$99</div>
+                    <ul>
+                        <li>Простой дизайн</li>
+                        <li>До 5 ссылок</li>
+                        <li>Базовая анимация</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Продвинутый</h3>
+                    <div class="price">$199</div>
+                    <ul>
+                        <li>Уникальный дизайн</li>
+                        <li>До 10 ссылок</li>
+                        <li>Продвинутая анимация</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Премиум</h3>
+                    <div class="price">$299</div>
+                    <ul>
+                        <li>Эксклюзивный дизайн</li>
+                        <li>Неограниченное количество ссылок</li>
+                        <li>Премиум анимации</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="order-form" id="order">
+        <div class="container">
+            <div class="form-container">
+                <h2>Заказать BIO сайт</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Выберите пакет</label>
+                        <select id="package">
+                            <option value="basic">Базовый</option>
+                            <option value="advanced">Продвинутый</option>
+                            <option value="premium">Премиум</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Описание проекта</label>
+                        <textarea id="message" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
